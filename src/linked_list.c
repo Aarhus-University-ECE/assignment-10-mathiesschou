@@ -26,11 +26,40 @@ void free_list(node *p) {
 void print_list(node *p) {
   // Add your code for exercise 1
   // There is NO testcode for this
+
+  /*
+   * if-statement. Hvis p ikke er 0,
+   * så printer vi noden, den er ved
+   */
+
+  if(p == NULL)
+    return;
+  else
+    {
+      printf("%d", p->value);
+      print_list(p->next);
+
+      return;
+    }
 }
 
 int sum_squares(node *p) {
   // Add your code for excercise 2
   // You can find the tests in tests.cpp
+
+  /*
+   * if-statement. Hvis p ikke er 0,
+   * så ganger vi p-værdien med sig selv
+   * og så tilføjer det til sum_squares
+   */
+
+  if(p == NULL)
+    return 0;
+  else
+    {
+      return p->value * p->value + sum_squares(p->next);
+    }
+
   return -1;
 }
 
@@ -38,8 +67,21 @@ typedef int (*fn_int_to_int)(int);
 
 node *map(node *p, fn_int_to_int f) { 
   // Add your code for excercise 3
-  
-  return NULL; 
+
+  /*
+   * If-statement; hvis p er NULL,
+   * så returnerer vi NULL. Hvis 
+   * p ikke er NULL, så kører vi 
+   * make_node, hvor værdien og mapper
+   * (p->next,f), som den næste pointer
+   */
+
+  if(p == 0)
+    return NULL;
+  else
+    {
+      return make_node(f(p->value), map(p->next, f));
+    }
 }
 
 int square(int x) { return x * x; }
